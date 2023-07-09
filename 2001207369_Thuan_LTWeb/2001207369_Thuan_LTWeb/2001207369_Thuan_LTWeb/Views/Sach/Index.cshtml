@@ -1,0 +1,189 @@
+﻿ @model List<_2001207369_Thuan_LTWeb.Models.Sach>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@{
+    string iconClass = "";
+    if (ViewBag.IconClass == "fa-sort-desc")
+    {
+        iconClass = "fa-sort-asc";
+    }
+    else
+    {
+        iconClass = "fa-sort-desc";
+    }
+}
+<div class="container">
+    <a href="/Home/TrangChu">
+        Trang Chủ
+    </a>
+    <div style=" border: solid 1px gray" class="">
+        <div class="row">
+            <div class="col-3">
+                <div style=" border:solid 1px orange ; background-color:orange; width:250px;height:auto;margin:15px;">
+                    <a href="" style="text-decoration:none;color:whitesmoke;padding:25px">
+                        Sách Tiếng Việt
+                    </a>
+                    <br />
+                    <a href="" style="text-decoration: none; color: whitesmoke; padding: 25px">
+                        English Books
+                    </a>
+                </div>
+                <div class="TenTacGia">
+
+                </div>
+            </div>
+            <div class="col-9 " style="padding-left:35px ;">
+                <div class="">
+                    <h4> Sách Tiếng Việt</h4>
+                    <div class="sapXep" style="padding-left:15px;    ">
+                        <div id="SapXep">
+                            <ul class="DropSapXep">
+                                <li>
+                                    <a href="#">Sắp Xếp</a>
+                                    <ul class="">
+                                        <li>
+                                            <a href="/Sach/index?SortColumn=GiaBan&IconClass=@iconClass&page=1 SortColumn=Price&IconClass=@iconClass&page=1">
+                                                Sắptheo giá sản phẩm
+                                            </a>
+                                            @if (ViewBag.SortColumn == "GiaBan")
+                                            {
+                                                <i class="fa @ViewBag.IconCLass"></i>
+                                            }
+                                        </li>
+                                        <li>
+                                            <a href="/Sach/index?SortColumn=TenSach&IconClass=@iconClass&page=1 SortColumn=Price&IconClass=@iconClass&page=1">
+                                                Sắp Xếp theo tên Sách
+                                            </a>
+                                            @if (ViewBag.SortColumn == "TenSach")
+                                            {
+                                                <i class="fa @ViewBag.IconCLass"></i>
+                                            }
+                                        </li>
+                                        <li>
+                                            <a href="#">Empty Lines Remover</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">String Word Count</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+
+
+                                </li>
+                                <li>
+                                    <a href="#">Quizzes</a>
+
+                                </li>
+                                <li>
+                                    <a href="#">Tools</a>
+
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div>
+                        @foreach (var item in Model)
+                        {
+
+                            double sale = Math.Round((100 - ((Convert.ToDouble(item.GiaBan) / Convert.ToDouble(item.GiaGiam)) * 100)), 0);
+                            ViewBag.sale = sale;
+                            <a href="/Sach/DeTail/@item.MaSach">
+                                <ul class="pro-item">
+
+                                    <li>
+
+                                        <div class="products">
+                                            @if (sale > 0)
+                                            {
+                                                <span class="  float-end" style="border: solid 1px red; border-radius: 50px; margin-right: 15px; color: whitesmoke; background-color: red; height: 50px; width: 50px; padding-top: 10px;"><b style="margin-top:10px;">- @ViewBag.sale%</b></span>
+                                            }
+
+                                            <img src="~/Photo/SanPham/@item.Anh" />
+                                            <div>
+                                                <b class="d-flex justify-content-center">
+                                                    @item.TenSach
+                                                </b>
+                                            </div>
+
+                                            <br />
+                                            <br />
+                                            <b class="price text-danger">Giá Tiền:  @item.GiaBan.ToString("C")</b>
+                                            <br />
+                                            @if (sale > 0)
+                                            {
+                                                <p>
+                                                    Giá Gốc:<del class="price text-danger">  @item.GiaGiam.ToString("C")</del>
+                                                </p>
+
+
+                                            }
+
+                                        </div>
+
+                                    </li>
+
+                                </ul>
+                            </a>
+                        }
+                    </div>
+                </div>
+                <div class="page">
+                    @{ /////Chuyen trang
+                        int PrevPage = ViewBag.page - 1;
+                        if (PrevPage <= 0)
+                        {
+                            PrevPage = 1;
+                        }
+                        int NextPage = ViewBag.page + 1;
+                        if (NextPage > ViewBag.TInh)
+                        {
+                            NextPage = ViewBag.TInh;
+                        }
+                    }
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="/Sach/index?SortColumn=@ViewBag.SortColumn&IconClass=@ViewBag.IconClass&page=@PrevPage">
+                                Trước
+                            </a>
+                        </li>
+                        @for (int i = 0; i < ViewBag.TInh; i++)////
+                        {
+
+                            if (i + 1 == ViewBag.page)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/Sach/index?SortColumn=@ViewBag.SortColumn&IconClass=@ViewBag.IconClass&page=@(i+1)">
+                                        @(i+1)
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/Sach/index?SortColumn=@ViewBag.SortColumn&IconClass=@ViewBag.IconClass&page=@(i+1)">
+                                        @(i+1)
+                                    </a>
+                                </li>
+                            }
+
+                        }
+                        <li class="page-item">
+                            <a class="page-link" href="/Sach/index?SortColumn=@ViewBag.SortColumn&IconClass=@ViewBag.IconClass&page=@NextPage">
+                                Sau
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

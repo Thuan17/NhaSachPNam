@@ -1,0 +1,76 @@
+﻿@model _2001207369_Thuan_LTWeb.Models.Sach
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+}
+
+@using (Html.BeginForm("Create", "AdminSach", new { area = "Admin" }, FormMethod.Post, new { enctype = "mulipart/dorm-data" }))
+{
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(row => row.TenSach, "Tên Sách")
+            @Html.TextBoxFor(row => row.TenSach, new { @class = "form-control", placeholder = "Tên Sách" })
+            @Html.ValidationMessageFor(row => row.TenSach)
+        </div>
+        <div class="col-6">
+
+            @Html.LabelFor(row => row.NgayXuatBan, "Ngày Xuất bản")
+            @Html.LabelFor(row => row.NgayXuatBan, "Ngày")
+            @Html.TextBoxFor(row => row.NgayXuatBan, new { @class = "form-control", placeholder = "Ngày Xuất bản", type = "date" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(row => row.MieuTa, "Miêu Tả")
+            @Html.TextBoxFor(row => row.MieuTa, new { @class = "form-control", placeholder = "Miêu Tả" })
+            @Html.ValidationMessageFor(row => row.MieuTa)
+        </div>
+        <div class="col-6">
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(row => row.GiaBan, "Giá Bán")
+            @Html.TextBoxFor(row => row.GiaBan, new { @class = "form-control", placeholder = "Giá Bán" })
+            @Html.ValidationMessageFor(row => row.GiaBan)
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(row => row.GiaGiam, "Giá Ban Đầu")
+            @Html.TextBoxFor(row => row.GiaGiam, new { @class = "form-control", placeholder = "Giá Ban Đầu" })
+            @Html.ValidationMessageFor(row => row.GiaGiam)
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(row => row.SoLuong, "Số Lượng")
+            @Html.TextBoxFor(row => row.SoLuong, new { @class = "form-control", placeholder = "Số Lượng" })
+            @Html.ValidationMessageFor(row => row.SoLuong)
+        </div>
+        <div class="col-6">
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(row => row.MaLoai, "Loại Sách")
+            @Html.DropDownListFor(row => row.MaLoai, new SelectList(ViewBag.LoaiSach, "MaLoai", "TenLoai"), "Hay Chon", new { @class = "form-control" })
+            @Html.ValidationMessageFor(row => row.MaLoai)
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(row => row.MaTacGia, "Tác Giả")
+            @Html.DropDownListFor(row => row.MaTacGia, new SelectList(ViewBag.TacGia, "MaTacGia", "TenTacGia"), "Hay Chon", new { @class = "form-control" })
+            @Html.ValidationMessageFor(row => row.MaTacGia)
+
+        </div>
+    </div>
+    <div class="row" >
+        <input type="file" id="uphinh" name="uphinh" accept="image/*" />
+    </div>
+    <button type="submit" class="btn btn-secondary">Tạo Sản Phẩm Mới</button>
+    <a href="/admin/AdminSach/Index">Return </a>
+}
+

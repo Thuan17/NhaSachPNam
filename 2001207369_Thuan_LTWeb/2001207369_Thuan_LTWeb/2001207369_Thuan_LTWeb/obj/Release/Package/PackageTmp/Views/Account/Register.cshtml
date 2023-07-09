@@ -1,0 +1,56 @@
+﻿@model _2001207369_Thuan_LTWeb.ViewModel.Register
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(row => row.UserName)
+            @Html.TextBoxFor(row => row.UserName, new { placeholder = "Tên Tài Khoản", @class = "form-control" })
+            @Html.ValidationMessageFor(row => row.UserName)
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(row => row.Email)
+            @Html.TextBoxFor(row => row.Email, new { placeholder = "Email", @class = "form-control" })
+            @Html.ValidationMessageFor(row => row.Email)
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(row => row.Password)
+            @Html.PasswordFor(row => row.Password, new { placeholder = "Mật Khẩu", @class = "form-control" })
+            @Html.ValidationMessageFor(row => row.Password)
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(row => row.ConfirmPassword)
+            @Html.PasswordFor(row => row.ConfirmPassword, new { placeholder = "Nhập lại Mật Khẩu", @class = "form-control" })
+            @Html.ValidationMessageFor(row => row.ConfirmPassword)
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(row => row.Phone)
+            @Html.TextBoxFor(row => row.Phone, new { placeholder = "Số Điện Thoại", @class = "form-control" })
+            @Html.ValidationMessageFor(row => row.Phone)
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(row => row.BrithDay)
+            @Html.TextBoxFor(row => row.BrithDay, new { placeholder = "Nhập Ngày Sinh", @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(row => row.BrithDay)
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(row => row.Address)
+            @Html.TextBoxFor(row => row.Address, new { placeholder = "Nhập Địa Chỉ", @class = "form-control" })
+            @Html.ValidationMessageFor(row => row.Address)
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(row => row.City)
+            @Html.TextBoxFor(row => row.City, new { placeholder = "Thành Phố", @class = "form-control", })
+            @Html.ValidationMessageFor(row => row.City)
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-secondary">Đăng Ký Tài Khoản</button>
+}
+
+

@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width ,intial-scale=1" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet2.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.6.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <div class="row">
+     <div class="col-2">
+         <div class="">
+             <img src="~/Photo/Web/Logo_290x56px-01__002_.jpg" width="290" height="59" />
+     
+                 <a href="/admin/adminsach/index"><span class="btn nut">Sách</span></a>
+           
+         </div>
+     </div>
+        <div class="col-8">
+            <div class="banner">
+                <img src="~/Photo/Web/Banner_YES_2022_1170x110px-01.jpg" width="1245" height="110" />
+            </div>
+            <br />
+
+            <div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li>
+                                    <a class="navbar-brand" href="/Home/TrangChu">
+                                        <img src="~/Photo/Web/Logo_290x56px-01__002_.jpg" />
+                                    </a>
+                                </li>
+                                <li class="nav-item text-danger">
+                                    <img src="~/Photo/Web/so-dien-thoai-duong-day-nong-so-y-te-tinh-gia-lai.jpeg" width="25" height="25" />
+                                    Hotline :<br />
+                                    <span style="padding-left:25px;">032986771</span>
+                                    <br />
+                                    <span style="padding-right:25px;color:black">Thứ 2 đến Chủ Nhật</span>
+
+
+                                </li>
+
+                                <li class="find">
+                                    <form class="d-flex flex-row align-items-center flex-wrap"
+                                          action="/home/trangchu">
+                                        @Html.TextBox("Search", ViewBag.search as string, new { @class = "find_Main" })
+                                        <button type="submit" class="btn_find ">Tìm</button>
+                                    </form>
+
+                                </li>
+                                <li class="find acount">
+
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <div class="text-danger">
+                                            Xin Chào :@User.Identity.Name
+                                           
+                                        </div>
+                                        <a class="text-danger" href="/account/logout">Đăng XUất</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/account/login">
+                                            <img src="~/Photo/Web/user-regular-24.png" />
+                                        </a>
+                                    }
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+
+                                    }
+
+                                </li>
+                                <li class="acount p-4">
+                                    <a href="/GioHang/Index">
+                                        <img src="~/Photo/Web/cart-regular-24.png" />
+                                        (<span style="color:lightgreen">@{Html.RenderPartial("GioHang");}</span>)
+                                    </a>
+
+                                </li>
+
+                            </ul>
+
+
+
+
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="line1">
+                <ul class="r1">
+                    <li>
+                        <a href="/Sach/Index" style="padding-top:10px;">
+                            SÁCH TIẾNG VIỆT
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="">
+                            ENGLISH BOOKS
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="">
+                            ĐỒ CHƠI
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="">
+                            ƯU ĐÃI HOT
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <br />
+    <div class="" style="background-color:lightgray">
+        <div class="row">
+            <div class="col-2">
+
+
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-3">
+
+                    </div>
+                    <div class=" col-6">
+                        <p> Đăng ký nhận bản tin của Nhà Sách Phương Nam</p>
+                        <ul style="list-style-type:none;">
+                            <li style="display:inline-block">
+                                <input type="Text" style="width: 400px; height: 30px" />
+                            </li>
+                            <li style=" ; display: inline-block">
+                                <button type="submit" style="background-color:orange;width:25px;height:30px"></button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-3">
+
+                    </div>
+                </div>
+
+                <br />
+                <div class="row">
+                    <div class="col-4">
+                        <h4>VỀ CHÚNG TÔI</h4>
+                        <div style="border-bottom:solid 1px gray;"></div>
+                        <a href="">
+                            Giới Thiệu Nhà Sách Phương Nam
+                        </a>
+                        <br />
+                        <a href="">
+                            Hệ Thống Nhà Sách Phương Nam
+                        </a>
+                        <br />
+                        <a href="">
+                            Điều Khoản Sử Dụng
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <div style="padding-left:10px;">
+                            <h4>TÀI KHOẢN CỦA TÔI</h4>
+                            <div style="border-bottom:solid 1px gray;"></div>
+                            <a href="/Account/Login">
+                                Đăng Nhập
+                            </a>
+                            <br />
+                            <a href="/Account/Register">
+                                Đăng Ký
+                            </a>
+                            <br />
+
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div style="padding-left:10px;">
+                            <h4>LIÊN HỆ VỚI CHÚNG TÔI</h4>
+                            <div style="border-bottom:solid 1px gray;"></div>
+                            <a href="">
+                                Hotline: 1900 6656
+                            </a>
+                            <br />
+                            <a href="">
+                                Email: hotro@nhasachphuongnam.com
+                            </a>
+                            <br />
+                            <ul>
+                                <li>
+
+                                </li>
+                                <li>
+
+                                </li>
+                                <li>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br />
+                <div style="background-color:orange">
+                    <p style="text-align:center">© 2010 - Bản quyền của Công Ty Cổ Phần Văn Hóa Phương Nam - nhasachphuongnam.com</p>
+                    <p style="text-align:center">Giấy chứng nhận Đăng ký Kinh doanh số 0301860552 do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 15/08/2019</p>
+                </div>
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+<style>
+    .nut{
+        width:150px;
+        height:75px;
+        border-radius:10px;
+    }
+    .nut:hover {
+       
+        border-radius: 10px;
+        border:solid 1px blue;
+    }
+</style>

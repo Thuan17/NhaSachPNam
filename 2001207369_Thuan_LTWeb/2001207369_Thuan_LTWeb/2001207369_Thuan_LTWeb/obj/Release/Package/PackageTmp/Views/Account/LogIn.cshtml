@@ -1,0 +1,78 @@
+﻿@model _2001207369_Thuan_LTWeb.ViewModel.LogIn
+
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+
+
+<section class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="card-body p-md-5 mx-md-4">
+
+                                <div class="text-center">
+                                    <a href="/home/Trangchu">
+                                        <img src="~/Photo/Web/Logo_290x56px-01__002_.jpg"
+                                             style="width: 250px;" alt="logo">
+                                        <h4 class="mt-1 mb-5 pb-1">Nhà Sách Phương Nam</h4>
+                                    </a>
+                                </div>
+                                <h4>Đăng Nhập Tài Khoản</h4>
+                                @using (Html.BeginForm("LogIn", "Account", FormMethod.Post))
+                                {
+                                    <div class="">
+                                        <div class="">
+                                            @Html.LabelFor(row => row.UserName)
+                                            <br />
+                                            @Html.TextBoxFor(row => row.UserName, new { placeholder = "Tài Khoản", @class = " DangNhap" })
+                                            @Html.ValidationMessageFor(row => row.UserName)
+                                        </div>
+                                        <br />
+                                        <div class="col-6">
+                                            @Html.LabelFor(row => row.Password)
+                                            <br />
+                                            @Html.PasswordFor(row => row.Password, new { placeholder = "Mật Khẩu", @class = "DangNhap " })
+                                            @Html.ValidationMessageFor(row => row.Password)
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <p>Bạn Chưa Có Tài KHoản ?<a href="/Account/Register">Đăng ký</a></p>
+                                    </div>
+                                    <div class="row w-25">
+                                        <div class="">
+                                            @Html.ValidationSummary()
+                                        </div>
+
+                                        <div class="col-6">
+                                            <button type="submit" class="btn btn-secondary">Đăng Nhập</button>
+                                        </div>
+                                    </div>
+
+                                }
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                            <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                <h4 class="mb-4">Nhà Sách Phương Nam</h4>
+                                <p class="small mb-0">
+                                    Đến với không gian mua sắm trực tuyến nhasachphuongnam.com, khách hàng có thể dễ dàng tìm thấy những cuốn sách hay,
+                                    đa thể loại của nhiều nhà xuất bản, công ty sách trong và ngoài nước cùng nhiều dụng cụ học tập, văn phòng phẩm, quà lưu niệm,
+                                    đồ chơi giáo dục chính hãng của những thương hiệu uy tín. Cùng tiêu chí không ngừng hoàn thiện, nâng cao chất lượng sản phẩm, dịch vụ,
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

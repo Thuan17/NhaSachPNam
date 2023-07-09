@@ -1,0 +1,63 @@
+﻿@model List<_2001207369_Thuan_LTWeb.Models.Sach>
+@{
+    ViewBag.Title = "Sale";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div style="">
+
+    <div>
+        @foreach (var item in Model)
+        {
+
+            double sale = Math.Round((100 - ((Convert.ToDouble(item.GiaBan) / Convert.ToDouble(item.GiaGiam)) * 100)), 0);
+            ViewBag.sale = sale;
+            <a href="/Sach/DeTail/@item.MaSach">
+              
+
+                <div class="products">
+                    @if (sale >= 50)
+                    {
+                        <ul class="pro-item">
+
+                            <li>
+                                <span class="  float-end" style="border: solid 1px red; border-radius: 50px; margin-right: 15px; color: whitesmoke; background-color: red; height: 50px; width: 50px; padding-top: 10px;"><b style="margin-top:10px;">-@ViewBag.sale%</b></span>
+                                <img src="~/Photo/SanPham/@item.Anh" />
+                                <br />
+                                <div>
+                                    <b class="d-flex justify-content-center">
+                                        @item.TenSach
+                                    </b>
+                                </div>
+
+                                <br />
+                                <br />
+                                <b class="price text-danger">Giá Tiền:  @item.GiaBan.ToString("C")</b>
+                                <br />
+
+                                <p>
+                                    Giá Gốc:<del class="price text-danger">  @item.GiaGiam.ToString("C")</del>
+                                </p>
+                            </li>
+
+                        </ul>
+                    }
+
+                </div>
+ 
+            </a>
+        }
+    </div>
+
+   
+        <div id="buttons">
+
+            <a href="/Sach/index" class="btn btn-1">Xem Thêm Sản Phẩm</a>
+        </div>
+        @*<button type="submit" ><a href="/Sach/index">Xem Thêm Sản Phẩm </a></button>*@
+    </div>
+
+
+
+</div>
+

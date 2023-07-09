@@ -1,0 +1,49 @@
+﻿@model _2001207369_Thuan_LTWeb.Models.TacGia
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+}
+
+<form action="/admin/AdminTacGia/edit/@Model.MaTacGia" method="post">
+    <input type="hidden" name="MaTacGia" value="@Model.MaTacGia" />
+    <div class="row">
+        <div class="col-6">
+            <label for="TenTacGia">Tên Tác Giả </label>
+            <input type="text"
+                   class="form-control"
+                   id="TenTacGia"
+                   name="TenTacGia"
+                   placeholder="Tên Tác Giả"
+                   value="@Model.TenTacGia" />
+        </div>
+        <div class="col-6">
+            <label for="NgaySinh">Ngày sinh </label>
+            <input type="date"
+                   class="form-control"
+                   id="NgaySinh"
+                   name="NgaySinh"
+                   placeholder="Ngày Sinh"
+                   value="@Model.NgaySinh" />
+        </div>
+        <div class="col-6">
+            <label for="QueQuan">Quê Quán </label>
+            <input type="text"
+                   class="form-control"
+                   id="QueQuan"
+                   name="QueQuan"
+                   placeholder="Quê Quán"
+                   value="@Model.QueQuan" />
+        </div>
+        <div class="col-6">
+            <label for="MieuTa">Miêu Tả </label>
+            <input type="date"
+                   class="form-control"
+                   id="MieuTa"
+                   name="MieuTa"
+                   placeholder="Miêu Tả"
+                   value="@Model.MieuTa" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-secondary">Lưu</button>
+    <a href="@Url.Action("index","ADminTacGia")">Return </a>
+</form>

@@ -1,0 +1,39 @@
+﻿@model _2001207369_Thuan_LTWeb.Models.TacGia
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+}
+
+@using (Html.BeginForm("Create", "AdminTacGia", new { area = "Admin" }, FormMethod.Post, new { enctype = "mulipart/dorm-data" }))
+
+{
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(row => row.TenTacGia, "Tên Tác Giả")
+            @Html.TextBoxFor(row => row.TenTacGia, new { @class = "form-control", placeholder = "Tên Tác Giả" })
+            @Html.ValidationMessageFor(row => row.TenTacGia)
+        </div>
+        <div class="col-6">
+
+            @Html.LabelFor(row => row.NgaySinh, "Ngày Sinh")
+            @Html.LabelFor(row => row.NgaySinh, "Ngày")
+            @Html.TextBoxFor(row => row.NgaySinh, new { @class = "form-control", placeholder = "Ngày Sinh", type = "date" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(row => row.QueQuan, "Quê Quán")
+            @Html.TextBoxFor(row => row.QueQuan, new { @class = "form-control", placeholder = "Quê Quán" })
+            @Html.ValidationMessageFor(row => row.QueQuan)
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(row => row.MieuTa, "Miêu Tả")
+            @Html.TextBoxFor(row => row.MieuTa, new { @class = "form-control", placeholder = "Miêu Tả" })
+            @Html.ValidationMessageFor(row => row.MieuTa)
+        </div>
+    </div>
+    <button type="submit" class="btn btn-secondary">Thêm Tác Giả MỚi</button>
+    <a href="/admin/AdminTacGia/Index">Return </a>
+}
+

@@ -1,0 +1,27 @@
+﻿@model _2001207369_Thuan_LTWeb.Models.TacGia
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+}
+
+<div class="">
+    <h4>@Model.TenTacGia</h4>
+    <br />
+    <P>
+        Quê Quán  @Model.QueQuan
+    </P>
+    <p>
+        Miêu Tả:  @Model.MieuTa
+    </p>
+    <a href="/admin/adminTacGia/edit/@Model.MaTacGia" style=" border-radius:10px;height:100px;width:125px; background-color:gray">
+        Chỉnh Sửa
+    </a>
+
+    <a href="" style=" border-radius:10px;height:100px;width:125px; background-color:gray">
+        Xóa Tác Giả
+    </a>
+
+
+
+</div>
+

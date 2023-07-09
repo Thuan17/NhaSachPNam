@@ -1,0 +1,26 @@
+﻿@model _2001207369_Thuan_LTWeb.Models.Sach
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+}
+
+<form action="/admin/adminsach/delete/@Model.MaSach" method="post">
+
+    <input type="hidden" name="ProductsID" value="@Model.MaSach" />
+    <table class="table">
+
+        <tr>
+            <th>Ten San Pham</th>
+            <th>@Model.TenSach</th>
+        </tr>
+        <tr>
+            <th>GIa</th>
+            <th>@Model.GiaBan.ToString("C")</th>
+        </tr>
+
+    </table>
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a href="/admin/product">Return</a>
+
+
+</form>

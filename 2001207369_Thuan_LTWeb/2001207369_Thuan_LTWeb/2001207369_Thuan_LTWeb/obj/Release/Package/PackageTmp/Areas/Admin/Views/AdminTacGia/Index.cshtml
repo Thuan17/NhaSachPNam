@@ -1,0 +1,246 @@
+﻿@model List<_2001207369_Thuan_LTWeb.Models.TacGia>
+@{
+    ViewBag.Title = "Index";
+}
+
+<a href="/admin/ADminTacgia/create" style="border-radius:5px;height:100px;width:125px; background-color:gray">Thêm Tác Giả Mới</a>
+<button type="button" id="btnGetBrands">get</button>
+
+<!--<div class="">
+    <table id="customers" class="brandTable">
+        <tr>
+            <th>Mã Tác Giả</th>
+            <th>Tên Tác Giả</th>
+
+        </tr>-->
+@*@foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.MaTacGia</td>
+            <td>
+                <a href="/admin/adminTacGia/Detail/@item.MaTacGia">@item.TenTacGia </a></td>
+        </tr>
+    }*@
+<!--</table>
+
+</div>-->
+
+<button class="nhan">
+    xem
+</button>
+<table class="table brandtable">
+    <tr>
+        <th>Mã Tác Giả</th>
+        <th>Tên Tác Giả</th>
+        <th>Miêu Tả</th>
+        <th>Ngày Sinh</th>
+        <th>Quê Quán</th>
+    </tr>
+
+</table>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Chi tiết</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tr>
+                        <td>
+                            MÃ Loại
+                        </td>
+                        <td>
+                            <span id="MaLoai"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Tên Loại
+                        </td>
+                        <td>
+                            <span id="TenLoai"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Mô Tả
+                        </td>
+                        <td>
+                            <span id="MoTa"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Tác Giả Mới
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="col-12">
+                <label for="TenTacGia">Tên Tác Giả</label>
+                <input type="text" class="form-control" placeholder="Tên Tác Giả" id="TenTacGia" />
+            </div>
+            <div class="col-12">
+                <label for="TenTacGia">Tên Tác Giả</label>
+                <input type="date" class="form-control" placeholder="Tên Tác Giả" id="NgaySinh" />
+            </div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <button type="button" id="btnInsert" class="">Lưu</button>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        Cập Nhập
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="col-12">
+                <label for="TenTacGia">Tên Tác Giả</label>
+                <input type="text" class="form-control" placeholder="Tên Tác Giả" id="TenTacGiaUp" />
+            </div>
+            <div class="col-12">
+                <label for="TenTacGia">Tên Tác Giả</label>
+                <input type="date" class="form-control" placeholder="Tên Tác Giả" id="NgaySinh" />
+            </div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <button type="button" id="btnUpdate" class="">Lưu</button>
+    </div>
+</div>
+
+
+
+<script>
+    $('.nhan').click(() => {
+        $('.brandtable').empty();
+        $('.brandtable').append('<tr><th>Mã Tác Giả </th><th>Tên Tác Giả</th><th>Quê Quán</th></tr>')
+        $.ajax({
+            type: 'GET',
+            url: '/api/Tacgias',
+            success: (responses) => {
+                for (var i = 0; i <= responses.length; i++) {
+                    const brRow = responses[i]
+                    const str = '<tr><td>' + brRow.MaTacGia + '</td><td>' + brRow.TenTacGia + '</td><td>' + brRow.QueQuan + '</td><td><button type="button" class="btn btn-primary btnView" data-toggle="modal" data-target="#exampleModal" data-TacGia="' + brRow.MaTacGia + '">Launch demo modal</button ></td>   <td><button type="button" class="btn btn-primary btnUpdate" data-toggle="modal"  data-TacGia="' + brRow.MaTacGia + '">Updatel</button ></td>   <td><button type="button" class="btn btn-primary btnDelete" data-toggle="modal" data-target="#exampleModal"  data-TacGia="' + brRow.MaTacGia + '">Updatel</button ></td></tr>';
+                    $('.brandtable').append(str);
+                }
+            },
+            error: (err) => { console.log(err); }
+        });
+    });
+
+
+    $(document).on('click', '.btnView', (event) => {
+        const brid = $(event.target).attr('data-TacGia');
+        $.ajax({
+            type: 'GET',
+            url: `/api/Tacgias?id=${brid}`,
+            success: (responses) => {
+                $('#MaLoai').html(responses.MaTacGia);
+                $('#TenLoai').html(responses.TenTacGia);
+                $('#MoTa').html(responses.NgaySinh);
+            },
+            error: (err) => { console.log(err); }
+        });
+    });
+
+    $('#btnInsert').click(() => {
+        const TenTacGia = $('#TenTacGia').val();
+        const NgaySinh = $('#NgaySinh').val();
+        $.ajax({
+            type: 'POST',
+            url: '/api/TacGias',
+            data: {
+                'TenTacGia': TenTacGia,
+                'NgaySinh': NgaySinh,
+            },
+
+            success: () => {
+                $('.nhan').trigger('click');
+            },
+            error: (err) => { console.log(err); }
+        });
+    });
+
+
+    $(document).on('click', '.btnUpdate', (event) => {
+        const brid = $(event.target).attr('data-TacGia');
+        $.ajax({
+            type: 'GET',
+            url: `/api/Tacgias?id=${brid}`,
+            success: (responses) => {
+                $('#TenTacGiaUp').val(responses.TenTacGia);
+                $('#NgaySinh').val(responses.NgaySinh);
+               
+            },
+            error: (err) => { console.log(err); }
+        });
+    });
+
+    $('#btnUpdate').click(() => {
+        const TenTacGia = $('#TenTacGia').val();
+        const NgaySinh = $('#NgaySinh').val();
+        $.ajax({
+            type: 'Put',
+            url: '/api/TacGias',
+            data: {
+                'TenTacGia': TenTacGia,
+                'NgaySinh': NgaySinh,
+            },
+
+            success: () => {
+                $('.nhan').trigger('click');
+            },
+            error: (err) => { console.log(err); }
+        });
+    });
+</script>
+
+
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+</style>

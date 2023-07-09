@@ -1,0 +1,68 @@
+﻿@model _2001207369_Thuan_LTWeb.Models.Sach
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+}
+
+<form action="/admin/adminSach/edit/@Model.MaSach" method="post">
+    <input type="hidden" name="MaSach" value="@Model.MaSach" />
+
+
+    <div class="row">
+        <div class=" col-md-6">
+            <label for="TenSach">Tên Sách </label>
+            <input type="text"
+                   class="form-control"
+                   id="TenSach"
+                   name="TenSach"
+                   placeholder="Tên Sách"
+                   value="@Model.TenSach" />
+        </div>
+        <div class=" col-md-3">
+            <label for="GiaBan">Giá </label>
+            <input type="number"
+                   class="form-control"
+                   id="GiaBan"
+                   name="GiaBan"
+                   placeholder="Giá Bán"
+                   value="@Model.GiaBan" />
+        </div>
+        <div class=" col-md-3">
+            <label for="GiaGiam">Giá Ban Đầu </label>
+            <input type="number"
+                   class="form-control"
+                   id="GiaGiam"
+                   name="GiaGiam"
+                   placeholder="Giá Ban Đầu "
+                   value="@Model.GiaGiam" />
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-md-6">
+            <label for="NgayXuatBan">Ngày Mua</label>
+            <input type="date"
+                   class="form-control"
+                   id="NgayXuatBan"
+                   name="NgayXuatBan"
+                   placeholder="Ngày Mua"
+                   value="@Model.NgayXuatBan.ToString("yyyy-MM-dd")" />
+        </div>
+      
+    </div>
+    <div class="row">
+        <div class="col-6">
+            @Html.LabelFor(row => row.MaLoai, "Loại Sách")
+            @Html.DropDownListFor(row => row.MaLoai, new SelectList(ViewBag.LoaiSach, "MaLoai", "TenLoai"), "Hay Chon", new { @class = "form-control" })
+            @Html.ValidationMessageFor(row => row.MaLoai)
+        </div>
+        <div class="col-6">
+            @Html.LabelFor(row => row.MaTacGia, "Loại Sách")
+            @Html.DropDownListFor(row => row.MaTacGia, new SelectList(ViewBag.TacGia, "MaTacGia", "TenTacGia"), "Hay Chon", new { @class = "form-control" })
+            @Html.ValidationMessageFor(row => row.MaTacGia)
+
+        </div>
+    </div>
+    <button type="submit" class="btn btn-secondary">Lưu</button>
+    <a href="@Url.Action("index","Product")">Return </a>
+</form>
+

@@ -1,0 +1,126 @@
+﻿@model _2001207369_Thuan_LTWeb.Models.Sach
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div style="border:solid 1px gray ;height:2000px;" class="ChiTiet">
+    <div class="row p-3">
+        <div class="col-5">
+            <div class="khung col d-flex justify-content-center p-5" style="border:solid 1px gray ; width:500px;height:550px;">
+                <img src="~/Photo/SanPham/@Model.Anh" width="400" height="450" />
+            </div>
+        </div>
+        <div class="col-7">
+            <B style="font-size:xx-large">@Model.TenSach</B>
+            <div style="border-top: 1px solid orange ">  </div>
+
+            <div class="pt-2 " style="float:right">
+                <a href="" style="text-decoration:none;color:black; font-size:smaller;"><b>Viết đánh giá của bạn</b></a>
+            </div>
+            <br />
+            <br />
+
+            <div style="border-top: 1px solid orange ">  </div>
+            <div class="text-danger" style="font-size:x-large">
+                <b>  @Model.GiaBan.ToString("C")  </b>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <p>Nhà bán hàng:</p>
+                    <p>Mã sản phẩm :</p>
+                    <p>Còn hàng :</p>
+                    <p>Số lượng :</p>
+                </div>
+                <div class="col-9">
+                    <p>
+                        <a href="" style="color:orange; text-decoration:none;">
+                            Phương Nam Online
+                            <img src="~/Photo/Web/conversation-solid-24.png" class="rung" />
+                            Đặt Câu Hỏi Về Sản Phẩm
+                        </a>
+                    </p>
+                    <p class="text-primary">
+                        @Model.MaSach sản phẩm
+                    </p>
+                    <p>
+                        @if (Model.SoLuong <= 0)
+                        {
+                        <p class="text-danger">Cháy Hàng</p>
+
+                    }
+                    else if (Model.SoLuong == 1)
+                    {
+                        @Model.SoLuong
+                        <p>Số Lượng Còn Ít  <img src="~/Photo/Web/radiation-solid-24.png" /></p>
+                    }
+                    else
+                    {
+                        @Model.SoLuong
+                    }
+
+
+                        <p>
+
+                            <input type="text" />
+                        </p>
+                    </div>
+                </div>
+                <div class="p-2" style="border:solid 1px gray;height:70px;">
+                    <div class="" style="float:right">
+                        <button type="submit" class="button">
+                            <img src="~/Photo/Web/cart-regular-24.png" />
+                            <span>
+                                <a href="/GioHang/AddItem?productId=@Model.MaSach&&SoLuong=1">THÊM VÀO GIỎ HÀNG</a>
+                            </span>
+
+
+                    </div>
+                    <a href="/Admin/Sach/Delete/@Model.MaSach">
+                        Xóa Sách
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="pb-2">
+            <section class="tabs">
+                <!------------- Tab ---------------->
+                <!------------- Tab 1 ---------------->
+                <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
+                <label for="tab-1" class="tab-label-1">Mô tả sản phẩm</label>
+                <!------------- Tab 2 ---------------->
+                <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2" />
+                <label for="tab-2" class="tab-label-2">Thông tin chi tiết</label>
+                <!------------- Tab 3 ---------------->
+                <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3" />
+                <label for="tab-3" class="tab-label-3">Đánh gia khách hàng</label>
+
+
+
+                <div class="clear-shadow"></div>
+                <div style="border-top: 1px solid orange ">  </div>
+                <!------------- Tab Content ---------------->
+                <div class="content">
+                    <!------------- Tab Content  1---------------->
+                    <div class="content-1">
+                        <p>@Model.LoaiSach.MoTa</p>
+                    </div>
+                    <!------------- Tab Content  2---------------->
+                    <div class="content-2">
+                        <p>Tác Giả @Model.TacGia.TenTacGia</p>
+                        <p>Ngày Sinh : @Model.TacGia.NgaySinh</p>
+                        <p>Giới thiệu tác giả: @Model.TacGia.MieuTa</p>
+                        <p> Quê quán : @Model.TacGia.QueQuan</p>
+                    </div>
+                    <!------------- Tab Content  3---------------->
+                    <div class="content-3">
+                        <p>Some content</p>
+                    </div>
+
+
+                </div>
+            </section>
+        </div>
+        <br />
+
+    </div>
+

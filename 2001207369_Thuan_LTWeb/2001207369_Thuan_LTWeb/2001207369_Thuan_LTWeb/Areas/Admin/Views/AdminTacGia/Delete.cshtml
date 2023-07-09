@@ -1,0 +1,26 @@
+﻿@model _2001207369_Thuan_LTWeb.Models.TacGia
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+}
+
+<form action="/admin/adminsach/delete/@Model.MaTacGia" method="post">
+
+    <input type="hidden" name="ProductsID" value="@Model.MaTacGia" />
+    <table class="table">
+
+        <tr>
+            <th>Ten San Pham</th>
+            <th>@Model.TenTacGia</th>
+        </tr>
+        <tr>
+            <th>GIa</th>
+            <th>@Model.NgaySinh.ToString("dd/MM/yyyy")</th>
+        </tr>
+
+    </table>
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a href="/admin/product">Return</a>
+
+
+</form>

@@ -1,0 +1,21 @@
+﻿@using _2001207369_Thuan_LTWeb.Models
+
+@{
+    int temp = 0;
+    var cart = Session["CartSession"];
+    if (cart != null)
+    {
+        var list = (List<GioHang>)cart;
+
+        foreach (var item in list)
+        {
+            temp += item.SoLuong;
+            ViewBag.temp = temp;
+        }
+        <span>@ViewBag.temp</span>
+    }
+    else
+    {
+        <span>0</span>
+    }
+}
